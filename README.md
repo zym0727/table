@@ -1,24 +1,5 @@
 # table
 
-## Project setup
-```
-npm install
-```
+xlsx-style的bug修复:node_module/xlsx-style/dist/cpexcel.js的807行的var cpt = require('./cpt' + 'able')改为var cpt = cptable;
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+表格导出Excel小demo
