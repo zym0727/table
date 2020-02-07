@@ -1,11 +1,11 @@
 # table
 
-表格导出Excel小demo
+# 表格导出Excel小demo
 
-操作前需要：   xlsx-style的bug修复:node_module/xlsx-style/dist/cpexcel.js的807行的var cpt = require('./cpt' + 'able')改为var cpt = cptable;
+# 操作前需要：   xlsx-style的bug修复:node_module/xlsx-style/dist/cpexcel.js的807行的var cpt = require('./cpt' + 'able')改为var cpt = cptable;
 
-g如果要设置行高，需要修改node_modules的xlsx-style文件下xlsx.js文件(不是dist文件下的xlsx.js文件)的write_ws_xml_data函数
-删除这个函数，加上以下代码
+# 如果要设置行高，需要修改node_modules的xlsx-style文件下xlsx.js文件(不是dist文件下的xlsx.js文件)的write_ws_xml_data函数
+# 删除这个函数，加上以下代码
 var DEF_PPI = 96, PPI = DEF_PPI;
 function px2pt(px) { return px * 96 / PPI; }
 function pt2px(pt) { return pt * PPI / 96; }

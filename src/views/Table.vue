@@ -121,13 +121,13 @@ export default {
         bookSST: false,
         type: 'binary'
       })
-      function s2ab (s) {
-        var buf = new ArrayBuffer(s.length)
-        var view = new Uint8Array(buf)
-        for (var i = 0; i !== s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF
-        return buf
-      }
-      FileSaver.saveAs(new Blob([s2ab(wbout)], { type: 'application/octet-stream;charset=utf-8' }), 'aabbcc.xlsx')
+      FileSaver.saveAs(new Blob([this.s2ab(wbout)], { type: 'application/octet-stream;charset=utf-8' }), 'aabbcc.xlsx')
+    },
+    s2ab (s) {
+      var buf = new ArrayBuffer(s.length)
+      var view = new Uint8Array(buf)
+      for (var i = 0; i !== s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF
+      return buf
     },
     myFun (ws) { // 自定义样式
       const sheetCols = []
