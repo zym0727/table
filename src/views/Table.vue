@@ -134,8 +134,8 @@ export default {
       for (let i = 0; i < 10; i++) {
         sheetCols.push({ wch: 20 })
       }
-      ws['!cols'] = sheetCols
-      // ws['!rows'] = [{ hpx: 100 }]
+      ws['!cols'] = sheetCols // 列宽
+      ws['!rows'] = [{ hpx: 30 }, { hpx: 30 }] // 行高
       for (let item in ws) {
         switch (item) {
           case '!merges':
@@ -203,12 +203,14 @@ export default {
   width: 1000px;
   height: 800px;
   background: wheat;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 table {
   border-collapse: collapse;
   width: 80%;
-  margin: 0 auto;
+  margin: 40px auto;
 }
 
 th,
@@ -246,6 +248,6 @@ td {
     position: absolute;
     background: black;
     left: -6px;
-    top: 8px;
+    top: 11px;
 }
 </style>
