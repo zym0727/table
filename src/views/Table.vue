@@ -15,12 +15,12 @@
         <th>地点</th>
         <th>人物</th>
         <th>事件</th>
-        <th>详情</th>
-        <th>联系人</th>
+        <th colspan="6">详情</th>
+        <!-- <th>联系人</th>
         <th>记录人</th>
         <th>上级批示</th>
         <th>备注</th>
-        <th>是否删除</th>
+        <th>是否删除</th> -->
       </tr>
 
       <tbody>
@@ -114,8 +114,10 @@ export default {
       var xlsxParam = { raw: true }// 转换成excel时，使用原始的格式
       var wb = XLSX.utils.table_to_book(document.querySelector('#outTable'), xlsxParam)// outTable为列表id
       var sheetName = wb.SheetNames
-      this.myFun(wb.Sheets[sheetName])
-      console.log('TCL: wb.Sheets[sheetName]', wb.Sheets[sheetName])
+      var wsObj = wb.Sheets[sheetName]
+      this.myFun(wsObj)
+      this.addRangeBorder(wsObj['!merges'], wsObj)
+      console.log('TCL: wsObj', wsObj)
       var wbout = XLSXStyle.write(wb, {
         bookType: 'xlsx',
         bookSST: false,
@@ -193,6 +195,25 @@ export default {
       ws['A2'].v = '日期                  项目'
       ws['A2'].s.border.diagonal = { style: 'thin' }
       ws['A2'].s.border.diagonalDown = true
+    },
+    /**
+     *
+     * @param range 合并单元格配置对象
+     * @param ws  sheet配置对象
+     * @returns {*}
+     */
+    addRangeBorder (range, ws) {
+      let arr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+      range.forEach(item => {
+        let startRowNumber = Number(item.s.c)
+        let endRowNumber = Number(item.e.c)
+
+        for (let i = startRowNumber + 1; i <= endRowNumber; i++) {
+          ws[arr[i] + (Number(item.e.r) + 1)] = { s: { border: { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } } } }
+        }
+      })
+      return ws
     }
   }
 }
